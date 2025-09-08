@@ -1,0 +1,267 @@
+:root {
+  --container: 920px;
+  --ink: #202124;
+  --muted: #6b7280;
+  --accent: #22c55e;
+  --link: #22c55e;
+  --pill-bg: #dbe9ee;
+  --pill-border: #c8dbe2;
+  --pill-ink: #0f172a;
+  --radius: 12px;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background: #fff;
+  color: var(--ink);
+  font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    "Apple Color Emoji", "Segoe UI Emoji";
+  font-size: 18px;
+  line-height: 1.75;
+}
+
+a {
+  color: var(--link);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  max-width: var(--container);
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.hero {
+  text-align: center;
+  padding: 40px 0 16px;
+}
+
+.hero h1 {
+  font-size: clamp(32px, 4.5vw, 48px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  color: #313132; /* 深灰色 */
+  line-height: 1.2;
+  margin: 6px 0 4px;
+}
+
+.venue {
+  color: var(--muted);
+  margin-top: 8px;
+  font-size: 18px;
+}
+
+.authors {
+  margin: 12px 0 6px;
+  font-size: 18px;
+}
+
+.authors a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-decoration-color: #c1f5d3;
+}
+
+.affils {
+  color: var(--muted);
+  font-size: 16px;
+}
+
+.cta {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 18px 0;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border: 1px solid var(--pill-border);
+  border-radius: 9999px;
+  background: var(--pill-bg);
+  color: var(--pill-ink);
+  box-shadow: 0 1px 0 rgba(0, 0, 0, 0.04);
+}
+
+.btn:hover {
+  filter: brightness(0.98);
+}
+
+.btn .icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 9999px;
+  background: #0f172a;
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+}
+
+h2 {
+  font-size: clamp(22px, 2.4vw, 28px);
+  font-weight: 600;
+  margin: 22px 0 8px;
+  line-height: 1.25;
+  color: #313132;
+  text-align: center;
+}
+
+p {
+  margin: 10px 0;
+}
+
+.tldr {
+  padding: 0;
+  border: 0;
+  background: none;
+}
+
+figure {
+  margin: 18px 0;
+}
+
+figure img {
+  width: 100%;
+  height: auto;
+  border: 0;
+  border-radius: var(--radius);
+}
+
+figcaption {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 6px;
+  text-align: center;
+}
+
+.styled-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px auto;
+  font-size: 15px;
+  text-align: center;
+}
+
+.styled-table th,
+.styled-table td {
+  border: 1px solid #e5e7eb;
+  padding: 8px 10px;
+}
+
+.styled-table thead th {
+  background-color: #f5f6f7;
+  font-weight: 600;
+}
+
+.styled-table tbody tr:nth-child(even) {
+  background-color: #fafafa;
+}
+
+.styled-table td:first-child {
+  font-weight: 600;
+  text-align: center;
+}
+
+.styled-table thead tr:nth-child(2) th {
+  font-weight: 400 !important;   /* 不加粗 */
+}
+
+
+
+.grid-2 {
+  display: flex;
+  gap: 20px;          /* 左右间距 */
+  align-items: stretch; /* 高度对齐 */
+  margin: 20px 0;
+}
+
+.grid-2 figure,
+.grid-2 .table-wrap {
+  flex: 1;             /* 各占一半 */
+  display: flex;
+  flex-direction: column;
+}
+
+.grid-2 figure img {
+  flex-grow: 1.6;        /* 图片填充高度 */
+  object-fit: contain; /* 保持比例 */
+}
+
+.grid-2 .styled-table {
+  height: 100%;        /* 表格拉伸到与图一样高 */
+}
+
+
+figure video {
+  display: block;
+  width: 100%;
+  max-width: 800px;   /* 固定最大宽度，比如 800px */
+  height: auto;
+  margin: 0 auto;     /* 居中 */
+  background: #000;
+}
+
+
+@media (min-width: 880px) {
+  .grid-2 {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.triptych {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 18px;
+}
+
+@media (min-width: 880px) {
+  .triptych {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+.bibtex {
+  background: #f5f6f7;
+  color: #1f2937;
+  padding: 16px 20px;
+  margin: 12px 0 0;
+  font-size: 15px;
+  position: relative;
+  overflow-x: auto;
+}
+
+
+.copy {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 6px 12px;
+  font-size: 12px;
+  background: #d9dde1;
+  color: #111;
+  border: 1px solid #e5e7eb;
+  border-radius: 9999px;
+  cursor: pointer;
+  box-shadow: none;
+}
+.copy:hover { filter: brightness(0.98); }
+
+footer {
+  margin: 30px 0 10px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 14px;
+}
