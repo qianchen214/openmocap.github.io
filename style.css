@@ -124,6 +124,7 @@ h2 {
 
 p {
   margin: 10px 0;
+  text-align: justify;
 }
 
 .tldr {
@@ -214,7 +215,12 @@ figcaption {
   align-items: end;
 }
 
-
+.grid-b-s {
+  display: grid;
+  grid-template-columns: 2fr 1fr; /* 左边两倍宽度，右边一倍 */
+  gap: 20px; 
+  align-items: end;
+}
 
 figure video {
   display: block;

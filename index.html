@@ -74,7 +74,7 @@
     <main class="container">
 
         <section>
-            <h2>A 5-minute supplementary video</h2>
+            <h2>A 3-minute introductory video</h2>
             <figure>
                 <video
                 src="./videos/viewpointrosetta_cvpr2025.mp4"
@@ -89,17 +89,16 @@
         <section>
             <h2>Abstract</h2>
             <p>
-                Optical motion capture is a foundational technology driving advancements in cutting-edge fields such as virtual reality and film production. However, system performance suffers severely under large-scale marker occlusions common in real-world applications. An in-depth analysis identifies two primary limitations of current models: (i) the lack of training datasets accurately reflecting realistic marker occlusion patterns, and (ii) the absence of training strategies designed to capture long-range dependencies among markers. To tackle these challenges, we introduce the CMU-Occlu dataset, which incorporates ray tracing techniques to realistically simulate practical marker occlusion patterns. Furthermore, we propose OpenMoCap, a novel motion-solving model designed specifically for robust motion capture in environments with significant occlusions. Leveraging a marker-joint chain inference mechanism, OpenMoCap enables simultaneous optimization and construction of deep constraints between markers and joints. Extensive comparative experiments demonstrate that OpenMoCap consistently outperforms competing methods across diverse scenarios, while the CMU-Occlu dataset opens the door for future studies in robust motion solving. The proposed OpenMoCap is integrated into the MoSen MoCap system for practical deployment.
+                Optical motion capture is a foundational technology driving advancements in cutting-edge fields such as virtual reality and film production. However, system performance suffers severely under large-scale marker occlusions common in real-world applications. An in-depth analysis identifies two primary limitations of current models: (i) the lack of training datasets accurately reflecting realistic marker occlusion patterns, and (ii) the absence of training strategies designed to capture long-range dependencies among markers. To tackle these challenges, we introduce the <strong>CMU-Occlu dataset</strong>, which incorporates ray tracing techniques to realistically simulate practical marker occlusion patterns. Furthermore, we propose <strong>OpenMoCap</strong>, a novel motion-solving model designed specifically for robust motion capture in environments with significant occlusions. Leveraging a marker-joint chain inference mechanism, OpenMoCap enables simultaneous optimization and construction of deep constraints between markers and joints. Extensive comparative experiments demonstrate that OpenMoCap consistently outperforms competing methods across diverse scenarios, while the CMU-Occlu dataset opens the door for future studies in robust motion solving. The proposed OpenMoCap is integrated into the MoSen MoCap system for practical deployment.
             </p>
         </section>
 
         <section>
             <h2>Problem Overview</h2>
             <p>
-                Optical motion capture in real-world scenarios often suffers from severe and long-term occlusions. 
-                As illustrated in the left figure, even with multiple cameras, certain markers inevitably become invisible due to 
-                body self-occlusion or limited viewpoints. This significantly reduces the reliability of existing 
-                solvers and highlights the need formodels that remain robust under real-world occlusions.
+                Optical Motion Capture (MoCap) in real-world scenarios often suffers from severe and long-term marker occlusions. 
+                As illustrated in Fig. 1, even with multiple cameras, certain markers inevitably become invisible due to 
+                body self-occlusion or limited viewpoints. The absence of these markers can lead to a drastic degradation in the performance of existing solvers, underscoring the need for models that remain robust under real-world occlusions.
             </p>
 
             <div class="grid-1-2">
@@ -110,9 +109,9 @@
                     alt="Ray-traced simulation of visible and occluded markers"
                     style="max-width:300px; width:100%; display:block; margin:0 auto;"
                     />
-                    <!-- <figcaption style="text-align:center; color:#6b7280; font-size:14px; margin-top:6px;">
-                    Fig. 1: Ray-traced simulation of visible and occluded markers.
-                    </figcaption> -->
+                    <figcaption style="text-align:center; color:#6b7280; font-size:14px; margin-top:6px;">
+                    Fig. 1: Marker occlusion in Optical MoCap.
+                    </figcaption>
                 </figure>
 
                 <!-- 右：大图（填满右列） -->
@@ -122,9 +121,9 @@
                     alt="Comparison under occlusion (RoMo vs. OpenMoCap)"
                     style="width:100%; display:block;"
                     />
-                    <!-- <figcaption style="text-align:center; color:#6b7280; font-size:14px; margin-top:6px;">
-                    Fig. 2: Comparison under occlusion (RoMo vs. OpenMoCap).
-                    </figcaption> -->
+                    <figcaption style="text-align:center; color:#6b7280; font-size:14px; margin-top:6px;">
+                    Fig. 2: Performance of solvers in a real MoCap scenario.
+                    </figcaption>
                 </figure>
             </div>
 
@@ -132,7 +131,7 @@
         </section>
 
         <section>
-            <h2>Our Framework</h2>
+            <h2>Framework</h2>
             <p>
                 OpenMoCap is designed to handle real-world marker occlusions through a two-stage architecture. 
                 First, a <strong>Position Solver</strong> recovers the locations of both visible and occluded markers and estimates joint positions, 
@@ -140,34 +139,55 @@
                 Then, a <strong>Rotation Solver</strong> takes the refined positions to predict joint rotations using a stacked attention-based model. 
                 Together, these components enable OpenMoCap to deliver accurate motion reconstruction even under severe occlusions.
             </p>
-            <figure>
+            <!-- <figure>
                 <img src="./figs/archi.png" alt="Framework pipeline" />
-                <!-- <figcaption>Overview of OpenMoCap</figcaption> -->
+                <figcaption>Fig. 3: Overview of OpenMoCap.</figcaption>
             </figure>
             <figure>
                 <img src="./figs/chain.png" alt="Marker-joint chain mechanism" style="max-width:460px; width:100%; margin:0 auto; display:block;"/>
-                <figcaption>Marker-Joint Chain Inference Mechanism</figcaption>
-            </figure>
+                <figcaption>Fig. 4: Marker-Joint Chain Inference Mechanism.</figcaption>
+            </figure> -->
+            <div class="grid-b-s">
+                <!-- 左：小图（保持上限 300px，居中） -->
+                <figure>
+                    <img
+                    src="./figs/archi.png"
+                    style="max-width:900px; width:100%; display:block;"
+                    />
+                    <figcaption style="text-align:center; color:#6b7280; font-size:14px; margin-top:6px;">
+                    Fig. 3: Overview of OpenMoCap.
+                    </figcaption>
+                </figure>
+
+                <!-- 右：大图（填满右列） -->
+                <figure>
+                    <img
+                    src="./figs/chain.png"
+                    style="max-width:300px; width:100%; display:block; margin:0 auto;"
+                    />
+                    <figcaption style="text-align:center; color:#6b7280; font-size:14px; margin-top:6px;">
+                    Fig. 4: Marker-Joint Chain Inference Mechanism.
+                    </figcaption>
+                </figure>
+            </div>
         </section>
 
         <section>
-            <h2>Our Dataset</h2>
+            <h2>Dataset</h2>
             <p>
-                We introduce <strong>CMU-Occlu</strong>, a novel dataset that simulates realistic marker occlusion patterns using ray tracing techniques. 
-                As shown in the figure below, CMU-Occlu exhibits occlusion patterns closely resembling those found in real-world scenarios, 
-                unlike existing datasets that often feature random or overly simplistic occlusions. This makes CMU-Occlu a valuable resource for training and evaluating robust motion capture models.
+                We introduce the <strong>CMU-Occlu dataset</strong>, which incorporates realistic marker occlusion patterns and overcomes the limitations of existing optical MoCap datasets with overly simplistic and unrealistic occlusion assumptions. This dataset can serve as a benchmark for evaluation in the field of optical motion capture solving.
             </p>
             <figure>
                 <img src="./figs/dataset.png" alt="dataset comparison" style="width:60%; display:block; margin:auto;"/>
-                <figcaption> Comparison of marker occlusion patterns of different datasets.</figcaption>
+                <figcaption>Fig. 5: Comparison of marker occlusion patterns of different datasets.</figcaption>
             </figure>
         </section>
 
         <section>
             <h2>Demo</h2>
             <p>
-                Below are qualitative results of OpenMoCap under severe occlusions in real-world scenarios.
-                Our method robustly reconstructs accurate motions despite significant marker occlusions, demonstrating its effectiveness and reliability for practical applications.
+                Below are qualitative results of OpenMoCap.
+                Our method robustly reconstructs accurate human poses despite significant marker occlusions, demonstrating its effectiveness and reliability for practical applications.
             </p>
             <figure>
                 <video
@@ -193,17 +213,20 @@
         </section>
 
         <section>
-            <h2>Comparison Results</h2>
+            <h2>Comparison & Application</h2>
             <p>
                 We conduct experiments on both the CMU and CMU-Occlu datasets to evaluate the performance of OpenMoCap against state-of-the-art methods. 
-                The table on the left reports quantitative results, where OpenMoCap consistently achieves the lowest errors across all metrics. 
-                The qualitative visualizations on the right are derived from our real-world capture data, showing that OpenMoCap reconstructs accurate motions even when critical markers are severely occluded.
+                Tab.1 reports quantitative results, where OpenMoCap consistently achieves the best performance across all metrics. 
+                In addition, we collected real-world MoCap data, where an actor performs a Russian twist, and compared the reconstruction results obtained from different solvers, as illustrated in Fig. 6.
             </p>
 
             <div class="grid-2">
 
                 <div class="table-wrap">
                     <table class="styled-table">
+                        <caption style="caption-side:bottom; text-align:center; font-size:14px; color:#6b7280; margin-top:6px;">
+                            Tab. 1: Comparison of MoCap solvers on CMU and CMU-Occlu datasets.
+                        </caption>
                     <thead>
                         <tr>
                         <th></th>
@@ -241,6 +264,7 @@
                 <figure>
                     <img src="./figs/realmocap.png" alt="Qualitative results"
                         style="width:100%; display:block;"/>
+                    <figcaption>Fig. 6: Qualitative results on real-world capture data.</figcaption>
                 </figure>
             </div>
 
