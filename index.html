@@ -97,38 +97,109 @@
             <h2>Problem Overview</h2>
             <p>
                 Optical motion capture in real-world scenarios often suffers from severe and long-term occlusions. 
-    As shown in Fig. 1, even with multiple cameras, certain markers inevitably become invisible due to 
-    body self-occlusion or limited viewpoints. This significantly reduces the reliability of existing 
-    solvers and highlights the need for occlusion-aware modeling.
+                As illustrated in the left figure, even with multiple cameras, certain markers inevitably become invisible due to 
+                body self-occlusion or limited viewpoints. This significantly reduces the reliability of existing 
+                solvers and highlights the need formodels that remain robust under real-world occlusions.
             </p>
-            <figure>
-                <img src="./figs/intro_ray_trace.png" alt="Overview: marker occlusion and motivation" style="max-width:300px; width:100%; margin:0 auto; display:block;"/>
-            </figure>
-            
-            <p>Fig. 2 illustrates how occlusion directly impacts reconstruction quality. When only visible markers 
-    are used as input, prior approaches such as RoMo fail to recover plausible poses under 
-    challenging occlusions. In contrast, our proposed <strong>OpenMoCap</strong> maintains accurate 
-    and consistent reconstructions, demonstrating its robustness against real-world occlusion patterns.</p>
-            <figure>
-                <img src="./figs/intro_observe.png" alt="Overview: marker occlusion and motivation" style="max-width:800px; width:100%; margin:0 auto; display:block;" />
-            </figure>
+
+            <div class="grid-1-2">
+                <!-- 左：小图（保持上限 300px，居中） -->
+                <figure>
+                    <img
+                    src="./figs/intro_ray_trace.png"
+                    alt="Ray-traced simulation of visible and occluded markers"
+                    style="max-width:300px; width:100%; display:block; margin:0 auto;"
+                    />
+                    <!-- <figcaption style="text-align:center; color:#6b7280; font-size:14px; margin-top:6px;">
+                    Fig. 1: Ray-traced simulation of visible and occluded markers.
+                    </figcaption> -->
+                </figure>
+
+                <!-- 右：大图（填满右列） -->
+                <figure>
+                    <img
+                    src="./figs/intro_observe.png"
+                    alt="Comparison under occlusion (RoMo vs. OpenMoCap)"
+                    style="width:100%; display:block;"
+                    />
+                    <!-- <figcaption style="text-align:center; color:#6b7280; font-size:14px; margin-top:6px;">
+                    Fig. 2: Comparison under occlusion (RoMo vs. OpenMoCap).
+                    </figcaption> -->
+                </figure>
+            </div>
+
             
         </section>
 
         <section>
             <h2>Our Framework</h2>
+            <p>
+                OpenMoCap is designed to handle real-world marker occlusions through a two-stage architecture. 
+                First, a <strong>Position Solver</strong> recovers the locations of both visible and occluded markers and estimates joint positions, 
+                powered by our <strong>Marker–Joint Chain Inference Mechanism</strong> that builds long-range dependencies between markers and joints. 
+                Then, a <strong>Rotation Solver</strong> takes the refined positions to predict joint rotations using a stacked attention-based model. 
+                Together, these components enable OpenMoCap to deliver accurate motion reconstruction even under severe occlusions.
+            </p>
             <figure>
                 <img src="./figs/archi.png" alt="Framework pipeline" />
-                <figcaption>Fig. 2: OpenMoCap architecture with Position Solver and Rotation Solver.</figcaption>
+                <!-- <figcaption>Overview of OpenMoCap</figcaption> -->
             </figure>
             <figure>
-                <img src="./figs/chain.png" alt="Marker-joint chain mechanism" style="max-width:600px; width:100%; margin:0 auto; display:block;"/>
-                <figcaption>Fig. 3: Marker-Joint Chain Inference capturing long-range dependencies.</figcaption>
+                <img src="./figs/chain.png" alt="Marker-joint chain mechanism" style="max-width:460px; width:100%; margin:0 auto; display:block;"/>
+                <figcaption>Marker-Joint Chain Inference Mechanism</figcaption>
             </figure>
         </section>
 
         <section>
-            <h2>Results</h2>
+            <h2>Our Dataset</h2>
+            <p>
+                We introduce <strong>CMU-Occlu</strong>, a novel dataset that simulates realistic marker occlusion patterns using ray tracing techniques. 
+                As shown in the figure below, CMU-Occlu exhibits occlusion patterns closely resembling those found in real-world scenarios, 
+                unlike existing datasets that often feature random or overly simplistic occlusions. This makes CMU-Occlu a valuable resource for training and evaluating robust motion capture models.
+            </p>
+            <figure>
+                <img src="./figs/dataset.png" alt="dataset comparison" style="width:60%; display:block; margin:auto;"/>
+                <figcaption> Comparison of marker occlusion patterns of different datasets.</figcaption>
+            </figure>
+        </section>
+
+        <section>
+            <h2>Demo</h2>
+            <p>
+                Below are qualitative results of OpenMoCap under severe occlusions in real-world scenarios.
+                Our method robustly reconstructs accurate motions despite significant marker occlusions, demonstrating its effectiveness and reliability for practical applications.
+            </p>
+            <figure>
+                <video
+                src="./videos/visual_1.mp4"
+                controls
+                preload="metadata"
+                playsinline
+                poster="./figs/qual_poster.jpg">
+                </video>
+                <!-- <figcaption>Fig. X: Qualitative demo under severe occlusions.</figcaption> -->
+            </figure>
+            <figure>
+                <video
+                src="./videos/visual_2.mp4"
+                controls
+                preload="metadata"
+                playsinline
+                poster="./figs/qual_poster_2.jpg">
+                </video>
+                <!-- <figcaption>Fig. X: Qualitative demo under severe occlusions.</figcaption> -->
+            </figure>
+            
+        </section>
+
+        <section>
+            <h2>Comparison Results</h2>
+            <p>
+                We conduct experiments on both the CMU and CMU-Occlu datasets to evaluate the performance of OpenMoCap against state-of-the-art methods. 
+                The table on the left reports quantitative results, where OpenMoCap consistently achieves the lowest errors across all metrics. 
+                The qualitative visualizations on the right are derived from our real-world capture data, showing that OpenMoCap reconstructs accurate motions even when critical markers are severely occluded.
+            </p>
+
             <div class="grid-2">
 
                 <div class="table-wrap">
@@ -173,26 +244,7 @@
                 </figure>
             </div>
 
-            <figure>
-                <video
-                src="./videos/visual_1.mp4"
-                controls
-                preload="metadata"
-                playsinline
-                poster="./figs/qual_poster.jpg">
-                </video>
-                <figcaption>Fig. X: Qualitative demo under severe occlusions.</figcaption>
-            </figure>
-            <figure>
-                <video
-                src="./videos/visual_2.mp4"
-                controls
-                preload="metadata"
-                playsinline
-                poster="./figs/qual_poster_2.jpg">
-                </video>
-                <figcaption>Fig. X: Qualitative demo under severe occlusions.</figcaption>
-            </figure>
+            
         </section>
 
         <section id="contact">
