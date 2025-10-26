@@ -46,7 +46,7 @@
                 </svg>
                 <span>arXiv</span>
             </a>
-            <a class="btn" href="./data/" target="_blank" rel="noopener">
+            <a class="btn" href="https://huggingface.co/datasets/chen-qian/CMU-Occlu/tree/main" target="_blank" rel="noopener">
                 <img src="./icons/hf-logo.png" alt="Hugging Face" width="20" height="20" style="display:inline-block;"/>
                 <span>Data</span></a>
             <a class="btn" href="https://github.com/qianchen214/OpenMoCap" target="_blank" rel="noopener">
@@ -74,26 +74,10 @@
     <main class="container">
 
         <section>
-            <h2>Demo</h2>
-            <div class="gif-grid">
-                <div class="gif-row">
-                    <div class="gif-item">
-                        <img src="./gif/dataset_sfu_test.gif" alt="Dataset SFU Test" style="width:100%; display:block;"/>
-                        <div class="gif-caption">
-                            OpenMoCap trained on different datasets.
-                        </div>
-                    </div>
-                    <div class="gif-item">
-                        <img src="./gif/method3_collected_data.gif" alt="Method 1 SFU Test" style="width:100%; display:block;"/>
-                        <div class="gif-caption">
-                            Comparison of different methods on real-world capture data.
-                        </div>
-                    </div>
-                </div>
-                
+            <!-- <h2>Demo</h2>                 -->
                 <div class="gif-row single">
                     <div class="gif-item large" style="--gif-width: 80%;">
-                        <img src="./gif/method1_sfu_test_box.gif" alt="Method 2 SFU Test" style="width:100%; display:block;"/>
+                        <img src="./gif/method1_sfu_test.gif" alt="Method 2 SFU Test" style="width:100%; display:block;"/>
                         <div class="gif-caption">
                             Comparison of different methods under severe marker occlusion.
                         </div>
@@ -206,10 +190,23 @@
             <p>
                 We introduce the <strong>CMU-Occlu dataset</strong>, which incorporates realistic marker occlusion patterns and overcomes the limitations of existing optical MoCap datasets with overly simplistic and unrealistic occlusion assumptions. This dataset can serve as a benchmark for evaluation in the field of optical motion capture solving.
             </p>
-            <figure>
-                <img src="./figs/dataset.png" alt="dataset comparison" style="width:60%; display:block; margin:auto;"/>
-                <figcaption>Fig. 5: Comparison of marker occlusion patterns of different datasets.</figcaption>
-            </figure>
+            <div class="grid-1-2">
+                <!-- 左：静态图片 -->
+                <figure style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="./figs/dataset.png" alt="dataset comparison" style="height:200px; width:auto; display:block;"/>
+                    <figcaption style="text-align:center; color:#6b7280; font-size:14px; margin-top:6px;">
+                        Fig. 5: Comparison of marker occlusion patterns of different datasets.
+                    </figcaption>
+                </figure>
+
+                <!-- 右：GIF动图 -->
+                <figure style="display: flex; flex-direction: column; align-items: center;">
+                    <img src="./gif/dataset_sfu_test.gif" alt="Dataset demonstration" style="height:200px; width:auto; display:block;"/>
+                    <figcaption style="text-align:center; color:#6b7280; font-size:14px; margin-top:6px;">
+                        OpenMocap trained on CMU-Occlu exhibits superior reconstruction capability.
+                    </figcaption>
+                </figure>
+            </div>
         </section>
 
         <section>
@@ -282,6 +279,39 @@
 
             
         </section>
+
+        <section id="contact">
+            <h2>MoCap System</h2>
+            <p>
+                This study is powered by our self-developed motion capture system (<$1,500 per camera)
+                with sub-millimeter 3D accuracy.
+            </p>
+
+            <!-- 三张图并排 -->
+            <div class="grid-3-images">
+                <figure>
+                <div class="image-container">
+                    <img src="./figs/camera.jpg" alt="motion capture camera" />
+                </div>
+                <figcaption>Fig. 7: Motion capture camera.</figcaption>
+                </figure>
+
+                <figure>
+                <div class="image-container">
+                    <img src="./figs/ui.png" alt="motion capture UI" />
+                </div>
+                <figcaption>Fig. 8: Motion capture UI.</figcaption>
+                </figure>
+
+                <figure>
+                <div class="image-container">
+                    <img src="./figs/scenario.jpg" alt="motion capture scenario" />
+                </div>
+                <figcaption>Fig. 9: Motion capture scenario.</figcaption>
+                </figure>
+            </div>
+            </section>
+
 
         <section id="contact">
             <h2>Contact</h2>

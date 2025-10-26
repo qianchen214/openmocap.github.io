@@ -173,9 +173,8 @@ figcaption {
   background-color: #fafafa;
 }
 
-.styled-table td:first-child {
+.styled-table tbody td[rowspan] {
   font-weight: 600;
-  text-align: center;
 }
 
 .styled-table thead tr:nth-child(2) th {
@@ -340,6 +339,49 @@ figure video {
     margin: 0 auto;
   }
 }
+
+/* 整体图片网格布局 */
+.grid-3-images {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin: 30px 0;
+}
+
+/* 每张图及说明整体 */
+.grid-3-images figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* 图片容器：固定高度、居中显示 */
+.image-container {
+  width: 100%;
+  height: 220px; /* 调整这个值即可控制统一高度 */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* 图片保持原始比例，不拉伸 */
+.image-container img {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  display: block;
+}
+
+/* 图片下方文字说明 */
+.grid-3-images figcaption {
+  text-align: center;
+  color: #6b7280;
+  font-size: 14px;
+  margin-top: 8px;
+  line-height: 1.4;
+}
+
 
 footer {
   margin: 30px 0 10px;
